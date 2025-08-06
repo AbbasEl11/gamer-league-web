@@ -1,0 +1,52 @@
+.about-section {
+  color: #f1f5f9;
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.about-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: #00f2ff;
+  text-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+}
+
+.about-text {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 3rem;
+  line-height: 1.7;
+}
+
+.about-list {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.about-item {
+  background-color: #1f2937;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  width: 200px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px rgba(0, 242, 255, 0.1);
+}
+
+.about-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+}
+
+.about-item .emoji {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}

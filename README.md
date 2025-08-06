@@ -4,7 +4,7 @@ This is the official frontend for the Gamer League platform – a competitive ga
 
 ## 🔧 Tech Stack
 - React + Vite
-- Tailwind CSS
+- CSS
 - React Router
 - Axios
 

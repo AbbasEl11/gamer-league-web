@@ -1,0 +1,27 @@
+.scroll-depth-home-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  perspective: 1200px;
+  overflow: hidden;
+}
+.scroll-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  will-change: opacity, transform;
+  pointer-events: none;
+  transition: opacity 0.4s, transform 0.4s;
+}
+.scroll-layer:first-child {
+  opacity: 1;
+}
+
+.scroll-layer * {
+  pointer-events: auto;
+}

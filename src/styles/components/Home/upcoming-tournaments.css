@@ -1,0 +1,25 @@
+.upcoming-section {
+  padding: 5rem 2rem;
+  text-align: center;
+  color: #f1f5f9;
+}
+
+.upcoming-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.upcoming-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  color: #00f2ff;
+  text-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+}
+
+.tournament-grid {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
