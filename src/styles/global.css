@@ -1,3 +1,38 @@
+/* === GL Tokens (non-breaking) === */
+:root {
+  /* Farben: an deine aktuelle Palette angepasst */
+  --gl-clr-text: #f1f5f9; /* wie dein body-Text */
+  --gl-clr-primary: #4f46e5; /* deine Button-Farbe */
+  --gl-clr-primary-dark: #3730a3; /* Hover */
+  --gl-clr-accent: #00f2ff; /* Neon-Cyan Akzent */
+
+  /* Background: dein Gradient als Token (nur Referenz, NICHT angewendet) */
+  --gl-bg-gradient: linear-gradient(-45deg, #0f172a, #1a1a2e, #4f46e5, #00f2ff);
+
+  /* Layout */
+  --gl-container-w: 1200px;
+  --gl-navbar-h: 64px;
+
+  /* Spacing */
+  --gl-sp-4: 1rem;
+  --gl-sp-6: 1.5rem;
+  --gl-sp-8: 2rem;
+
+  /* Radius */
+  --gl-radius-8: 8px;
+  --gl-radius-pill: 999px;
+
+  /* Motion */
+  --gl-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --gl-dur-1: 140ms;
+
+  /* Z-Index Skala (nur als Referenz) */
+  --gl-z-navbar: 1000;
+  --gl-z-tooltip: 1100;
+  --gl-z-panel: 1;
+  --gl-z-panel-active: 999;
+}
+
 /* ====== Global Styles ====== */
 a {
   text-decoration: none;
@@ -61,4 +96,62 @@ body {
 
 .page-container {
   padding: 2rem;
+}
+
+/* === GL Utilities (non-breaking) === */
+/* bewusst mit "gl-" Präfix, damit nichts von dir überschrieben wird */
+
+.gl-container {
+  width: min(var(--gl-container-w), 100% - 2rem);
+  margin-inline: auto;
+}
+.gl-center {
+  display: grid;
+  place-items: center;
+}
+.gl-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gl-sp-4);
+}
+.gl-grid {
+  display: grid;
+  gap: var(--gl-sp-6);
+}
+.gl-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--gl-radius-8);
+  padding: var(--gl-sp-4);
+}
+
+/* optionaler Spacer falls du ihn irgendwann am <main> nutzen willst */
+.gl-page-wrap {
+  padding-top: var(--gl-navbar-h);
+}
+
+/* optional: Outline-Button (nutzt deine Farben, wird nirgends automatisch angewendet) */
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--gl-clr-primary);
+  color: var(--gl-clr-primary);
+  transition: transform var(--gl-dur-1) var(--gl-ease-out),
+    box-shadow var(--gl-dur-1) var(--gl-ease-out);
+}
+.btn-outline:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.25);
+}
+
+/* optional: A11y – bewegt nichts für Standard-User */
+@media (prefers-reduced-motion: reduce) {
+  body {
+    animation: none !important;
+  }
+}
+
+.my-block {
+  border-radius: var(--gl-radius-8);
+  padding: var(--gl-sp-4);
 }
