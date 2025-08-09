@@ -1,0 +1,262 @@
+/* --- Global Styles --- */
+.t-title {
+  margin: 0 0 1rem;
+  font-size: clamp(1.4rem, 1vw + 1rem, 2rem);
+}
+
+.t-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+}
+
+/* --- Card Main --- */
+.t-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-radius 0.4s ease;
+  will-change: transform;
+}
+
+.t-card:hover,
+.t-card:focus-within {
+  transform: scale(1.1);
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
+}
+
+/* --- Card Front --- */
+.t-first-content {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 1;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transform-origin: center;
+  z-index: 3;
+  border-radius: 15px;
+}
+
+.t-first__bg {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: none;
+}
+
+.t-first__top {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.t-first__pill {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #f1f5f9;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 24px rgba(0, 242, 255, 0.12);
+}
+
+.t-first__center {
+  position: relative;
+  z-index: 1;
+}
+
+.t-first__logo {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.35));
+}
+
+/* --- Card Back --- */
+.t-second-content {
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: rotate(90deg) scale(-1);
+  transform-origin: center;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.t-card__media {
+  position: relative;
+  height: 140px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.t-card__media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.45) 75%
+  );
+}
+
+.t-card__head {
+  padding: 0.75rem 1rem 0.25rem 1rem;
+}
+
+.t-card__title {
+  margin: 0.25rem 0 0 0;
+  font-size: 1.1rem;
+}
+
+.t-card__subtitle {
+  margin: 0.25rem 0 0 0;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+}
+
+.t-card__meta {
+  padding: 0.25rem 1rem;
+}
+
+.t-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.25rem 0;
+}
+
+.t-label {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+}
+
+.t-value {
+  font-weight: 600;
+}
+
+.t-card__progress {
+  padding: 0.5rem 1rem 0 1rem;
+}
+
+.t-progress__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.35rem;
+  color: #cbd5e1;
+  font-size: 0.85rem;
+}
+
+.t-progress {
+  width: 100%;
+  height: 8px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.t-progress::-webkit-progress-bar {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.t-progress::-webkit-progress-value {
+  background: linear-gradient(90deg, #4f46e5, #00f2ff);
+}
+
+.t-progress::-moz-progress-bar {
+  background: linear-gradient(90deg, #4f46e5, #00f2ff);
+}
+
+/* --- Badge Status --- */
+.t-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.t-badge--registration {
+  color: #00f2ff;
+  border-color: rgba(0, 242, 255, 0.35);
+}
+
+.t-badge--running {
+  color: #7c4dff;
+  border-color: rgba(124, 77, 255, 0.4);
+}
+
+.t-badge--full {
+  color: #94a3b8;
+  border-color: rgba(148, 163, 184, 0.35);
+}
+
+.t-badge--finished {
+  color: #64748b;
+  border-color: rgba(100, 116, 139, 0.35);
+}
+
+/* --- Game Specific Styles --- */
+.t-card--valorant .t-first__bg,
+.t-card--valorant .t-card__media {
+  background-image: url("../../assets/images/games/valorant.jpg");
+}
+
+.t-card--lol .t-first__bg,
+.t-card--lol .t-card__media {
+  background-image: url("../../assets/images/games/lol.jpg");
+}
+
+.t-card--cs2 .t-first__bg,
+.t-card--cs2 .t-card__media {
+  background-image: url("../../assets/images/games/cs2.jpg");
+}
+
+.t-card--rocketleague .t-first__bg,
+.t-card--rocketleague .t-card__media {
+  background-image: url("../../assets/images/games/rocketleague.jpg");
+}
+
+/* --- Hover and Focus States --- */
+.t-card:hover .t-first-content,
+.t-card:focus-within .t-first-content {
+  opacity: 0;
+  transform: scaleY(0);
+  pointer-events: none;
+}
+
+.t-card:hover .t-second-content,
+.t-card:focus-within .t-second-content {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* --- Accessibility --- */
+@media (prefers-reduced-motion: reduce) {
+  .t-card,
+  .t-first-content,
+  .t-second-content {
+    transition: none !important;
+    transform: none !important;
+  }
+}

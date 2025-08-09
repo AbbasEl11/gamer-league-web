@@ -17,11 +17,6 @@ function Features() {
       title: 'Live Commentary',
       text: 'Watch streams with AI or community casters.',
     },
-   // {
-   //   icon: '🛡️',
-   //   title: 'Anti-Cheat Protection',
-   //   text: 'We ensure a fair and safe playing environment.',
-   // },
   ];
 
   return (

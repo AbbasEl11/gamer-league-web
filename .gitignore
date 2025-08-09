@@ -11,6 +11,10 @@ node_modules
 dist
 dist-ssr
 *.local
+up.bat
+up-main.bat
+GamingIconsDemo.jsx
+gaming-icons-demo.css
 
 # Editor directories and files
 .vscode/*

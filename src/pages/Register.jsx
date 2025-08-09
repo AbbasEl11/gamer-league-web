@@ -15,7 +15,7 @@ function Register() {
         <label>Password</label>
         <input type="password" required />
 
-        <button type="submit" className="btn btn-primary">Register</button>
+        <button type="submit" className="btn btn-primary btn--block">Register</button>
 
         <div className="form-footer">
           Already have an account? <a href="/login">Login</a>

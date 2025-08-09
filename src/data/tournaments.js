@@ -1,0 +1,52 @@
+const tournaments = [
+  {
+    id: "gl-valorant-12",
+    game: "Valorant",
+    title: "GL Open #12",
+    startsAt: "2025-09-05T18:00:00Z",
+    format: "5v5",
+    prizePool: 500,
+    entryFee: 5,
+    platform: "Riot",
+    slots: { max: 64, taken: 31 },
+    status: "registration", // registration | running | finished | full
+  },
+  {
+    id: "gl-lol-08",
+    game: "League of Legends",
+    title: "SoloQ Clash",
+    startsAt: "2025-09-12T19:00:00Z",
+    format: "5v5",
+    prizePool: 750,
+    entryFee: 7,
+    platform: "Riot",
+    slots: { max: 32, taken: 12 },
+    status: "registration",
+  },
+  {
+    id: "gl-cs2-03",
+    game: "CS2",
+    title: "Weekend Cup",
+    startsAt: "2025-08-30T16:00:00Z",
+    format: "5v5",
+    prizePool: 300,
+    entryFee: 3,
+    platform: "Steam",
+    slots: { max: 16, taken: 16 },
+    status: "full",
+  },
+  {
+    id: "gl-rl-01",
+    game: "Rocket League",
+    title: "Doubles Night",
+    startsAt: "2025-09-01T20:00:00Z",
+    format: "2v2",
+    prizePool: 150,
+    entryFee: 2,
+    platform: "Steam",
+    slots: { max: 32, taken: 5 },
+    status: "registration",
+  },
+];
+
+export default tournaments;

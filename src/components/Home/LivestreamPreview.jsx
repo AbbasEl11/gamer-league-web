@@ -19,7 +19,7 @@ function LivestreamPreview() {
           ></iframe>
         </div>
 
-        <a href="/livestreams" className="btn btn-glow livestream-btn">Watch more !</a>
+        <a href="/livestreams" className="btn btn-glow btn--lg">Watch more !</a>
       </div>
     </section>
   );
