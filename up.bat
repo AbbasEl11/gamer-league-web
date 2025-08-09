@@ -7,7 +7,7 @@ if "%~1"=="" (
 ) else (
   set msg=%*
 )
-git Pull
+git pull
 git add -A
 git commit -m "%msg%"
 
