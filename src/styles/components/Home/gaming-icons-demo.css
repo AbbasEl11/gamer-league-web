@@ -1,0 +1,578 @@
+/* === Gamer League – Neon Glass Pack (React / CSS only) ===
+   Alles scoped unter .glg. Farben/Speed per CSS-Variablen anpassbar.
+*/
+@property --glg-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.glg {
+  /* Theme */
+  --glg-bg: #070b14;
+  --glg-surface: #0c1222;
+  --glg-panel: #0a0f1e;
+  --glg-text: #e7ebf2;
+  --glg-muted: #97a0b7;
+
+  /* Brand */
+  --glg-primary: #8b5cf6; /* violet */
+  --glg-accent: #06b6d4; /* cyan */
+
+  /* Gold */
+  --glg-gold-1: #fff2bf;
+  --glg-gold-2: #f4b740;
+  --glg-gold-3: #a86a10;
+
+  /* FX */
+  --glg-speed: 1;
+  --glg-radius: 18px;
+  --glg-blur: 12px;
+}
+
+.glg.glg--decor {
+  position: relative;
+  isolation: isolate;
+}
+.glg.glg--decor::before,
+.glg.glg--decor::after {
+  content: "";
+  position: absolute;
+  inset: auto;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: -1;
+}
+.glg.glg--decor::before {
+  top: -140px;
+  left: -120px;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklab, var(--glg-primary) 75%, transparent),
+    transparent 70%
+  );
+}
+.glg.glg--decor::after {
+  right: -160px;
+  bottom: -160px;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklab, var(--glg-accent) 75%, transparent),
+    transparent 70%
+  );
+}
+
+/* Layout */
+.glg .glg-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px;
+  display: grid;
+  gap: 28px;
+}
+.glg .glg-row {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* Card – Glass + animated gradient border */
+.glg .glg-card {
+  position: relative;
+  border-radius: var(--glg-radius);
+  padding: 20px;
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.02)
+    ),
+    var(--glg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(var(--glg-blur)) saturate(130%);
+  -webkit-backdrop-filter: blur(var(--glg-blur)) saturate(130%);
+}
+.glg .glg-card--chrome::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--glg-angle),
+    var(--glg-primary),
+    var(--glg-accent),
+    var(--glg-primary)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: glg-rotate calc(12s * var(--glg-speed)) linear infinite;
+  opacity: 0.35;
+  pointer-events: none;
+}
+@keyframes glg-rotate {
+  to {
+    --glg-angle: 360deg;
+  }
+}
+
+.glg .glg-title {
+  margin: 0 0 12px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--glg-muted);
+}
+
+/* Icon base + Auren */
+.glg .glg-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 14px;
+}
+.glg .glg-icon svg {
+  width: min(100%, 360px);
+  height: auto;
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 10px 32px rgba(0, 0, 0, 0.35));
+}
+.glg .glg-aura {
+  position: absolute;
+  inset: 8% 12%;
+  z-index: -1;
+  border-radius: 28px;
+  filter: blur(24px);
+  opacity: 0.55;
+}
+.glg .glg-aura--controller {
+  background: radial-gradient(
+      60% 80% at 30% 40%,
+      color-mix(in oklab, var(--glg-primary) 70%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      60% 80% at 70% 60%,
+      color-mix(in oklab, var(--glg-accent) 70%, transparent),
+      transparent 70%
+    );
+}
+.glg .glg-aura--trophy {
+  background: radial-gradient(
+      60% 80% at 25% 35%,
+      color-mix(in oklab, var(--glg-gold-2) 60%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      60% 80% at 75% 55%,
+      color-mix(in oklab, var(--glg-gold-1) 60%, transparent),
+      transparent 70%
+    );
+}
+
+/* ========================= */
+/* Controller / Gamepad      */
+/* ========================= */
+.glg .glg-icon--controller .gamepad {
+  transform-origin: 50% 60%;
+  animation: glg-rumble calc(2.2s * var(--glg-speed)) infinite ease-in-out;
+  animation-delay: 0.12s;
+  will-change: transform;
+}
+@keyframes glg-rumble {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0);
+  }
+  12% {
+    transform: translate(-0.7px, 0.7px) rotate(-0.35deg);
+  }
+  24% {
+    transform: translate(0.9px, -0.7px) rotate(0.55deg);
+  }
+  36% {
+    transform: translate(-0.5px, 0.4px) rotate(-0.25deg);
+  }
+  48% {
+    transform: translate(0.7px, 0.9px) rotate(0.4deg);
+  }
+  60% {
+    transform: translate(-0.5px, -0.7px) rotate(-0.35deg);
+  }
+  72% {
+    transform: translate(0.3px, 0.4px) rotate(0.2deg);
+  }
+  84% {
+    transform: translate(-0.4px, -0.3px) rotate(-0.2deg);
+  }
+}
+
+.glg .glg-icon--controller .led {
+  fill: var(--glg-accent);
+  filter: drop-shadow(0 0 6px var(--glg-accent));
+  animation: glg-led-blink calc(1.6s * var(--glg-speed)) infinite steps(1);
+}
+@keyframes glg-led-blink {
+  0%,
+  60%,
+  100% {
+    opacity: 0.25;
+  }
+  30% {
+    opacity: 1;
+  }
+}
+
+.glg .glg-icon--controller .btn {
+  transform-origin: center;
+  fill: #1f1536;
+  animation: glg-btn-pulse calc(2.6s * var(--glg-speed)) infinite;
+  filter: drop-shadow(0 2px 8px rgba(139, 92, 246, 0.25));
+}
+.glg .glg-icon--controller .btn--b {
+  animation-delay: 0.7s;
+}
+@keyframes glg-btn-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+.glg .glg-icon--controller .stick {
+  transform-origin: center;
+  animation: glg-stick-wobble calc(3.4s * var(--glg-speed)) infinite ease-in-out;
+}
+.glg .glg-icon--controller .stick--r {
+  animation-delay: 0.9s;
+}
+@keyframes glg-stick-wobble {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(1.2px, -1px);
+  }
+  50% {
+    transform: translate(-1.4px, 1px);
+  }
+  75% {
+    transform: translate(1px, 1.2px);
+  }
+}
+.glg .glg-icon--controller .dpad-dot,
+.glg .glg-icon--controller .stick-dot {
+  fill: #273159;
+}
+.glg .glg-icon--controller .contour path {
+  stroke: color-mix(in oklab, var(--glg-primary) 70%, transparent);
+  stroke-width: 1.6;
+}
+
+/* ========================= */
+/* Trophy (Pokal)            */
+/* ========================= */
+.glg .glg-icon--trophy .trophy {
+  transform-origin: 50% 90%;
+  animation: glg-floaty calc(3.6s * var(--glg-speed)) ease-in-out infinite;
+  filter: drop-shadow(0 10px 26px rgba(244, 182, 64, 0.25));
+}
+@keyframes glg-floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.glg .glg-icon--trophy .shine {
+  fill: rgba(255, 255, 255, 0.36);
+  opacity: 0;
+  animation: glg-sweep calc(2.6s * var(--glg-speed)) linear infinite;
+}
+@keyframes glg-sweep {
+  0% {
+    transform: translateX(-160px) rotate(18deg);
+    opacity: 0;
+  }
+  14% {
+    opacity: 0.35;
+  }
+  40% {
+    transform: translateX(220px) rotate(18deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(220px) rotate(18deg);
+    opacity: 0;
+  }
+}
+.glg .glg-icon--trophy .sparks .spark {
+  fill: var(--glg-gold-1);
+  opacity: 0.9;
+  transform-origin: center;
+  animation: glg-twinkle calc(2.1s * var(--glg-speed)) ease-in-out infinite;
+}
+.glg .glg-icon--trophy .sparks .spark--b {
+  animation-delay: 0.5s;
+}
+@keyframes glg-twinkle {
+  0%,
+  100% {
+    transform: scale(0.6);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* Confetti – subtil */
+.glg .glg-icon--trophy .confetti rect {
+  opacity: 0;
+  transform-origin: center;
+}
+.glg .glg-icon--trophy .confetti .c1 {
+  fill: var(--glg-accent);
+  animation: glg-confetti1 calc(5s * var(--glg-speed)) linear infinite 0.2s;
+}
+.glg .glg-icon--trophy .confetti .c2 {
+  fill: var(--glg-primary);
+  animation: glg-confetti1 calc(5s * var(--glg-speed)) linear infinite 0.7s;
+}
+.glg .glg-icon--trophy .confetti .c3 {
+  fill: #22c55e;
+  animation: glg-confetti2 calc(5s * var(--glg-speed)) linear infinite 0.4s;
+}
+.glg .glg-icon--trophy .confetti .c4 {
+  fill: #f472b6;
+  animation: glg-confetti2 calc(5s * var(--glg-speed)) linear infinite 0.9s;
+}
+.glg .glg-icon--trophy .confetti .c5 {
+  fill: #f59e0b;
+  animation: glg-confetti1 calc(5s * var(--glg-speed)) linear infinite 1.1s;
+}
+
+@keyframes glg-confetti1 {
+  0% {
+    transform: translateY(-90px) rotate(0turn);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(90px) rotate(1.8turn);
+    opacity: 0;
+  }
+}
+@keyframes glg-confetti2 {
+  0% {
+    transform: translateY(-100px) rotate(0turn);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100px) rotate(2.1turn);
+    opacity: 0;
+  }
+}
+
+/* ========================= */
+/* Chat Simulation           */
+/* ========================= */
+.glg .glg-chat {
+  --glg-loop: calc(16s * var(--glg-speed));
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0.02)
+    ),
+    var(--glg-panel);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: calc(var(--glg-radius) - 2px);
+  padding: 14px 12px;
+  max-width: 620px;
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.glg .glg-chat__row {
+  display: flex;
+  gap: 10px;
+  margin: 12px 0;
+  align-items: flex-end;
+}
+.glg .glg-chat__row--right {
+  justify-content: flex-end;
+}
+
+.glg .glg-chat__avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  flex: 0 0 30px;
+  position: relative;
+  background: radial-gradient(
+      circle at 30% 30%,
+      var(--glg-accent),
+      transparent 65%
+    ),
+    #0c1a2a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+.glg .glg-chat__avatar::after {
+  content: "";
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #22c55e;
+  border: 2px solid var(--glg-panel);
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+}
+
+.glg .glg-bubble {
+  position: relative;
+  max-width: 74%;
+  padding: 11px 14px;
+  border-radius: 16px;
+  line-height: 1.25;
+  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #12182a;
+  color: var(--glg-text);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transform: translateY(8px) scale(0.98);
+  animation: glg-bubble-in var(--glg-loop) var(--glg-delay, 0s) infinite
+    cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.glg .glg-bubble::before {
+  /* Tail */
+  content: "";
+  position: absolute;
+  left: -6px;
+  bottom: 6px;
+  width: 10px;
+  height: 10px;
+  rotate: 45deg;
+  background: #12182a;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.glg .glg-bubble--me {
+  background: linear-gradient(
+    180deg,
+    rgba(139, 92, 246, 0.22),
+    rgba(139, 92, 246, 0.08)
+  );
+  border-color: rgba(139, 92, 246, 0.35);
+}
+.glg .glg-chat__row--right .glg-bubble::before {
+  left: auto;
+  right: -6px;
+  border-left: none;
+  border-bottom: none;
+  border-right: 1px solid rgba(139, 92, 246, 0.35);
+  border-top: 1px solid rgba(139, 92, 246, 0.25);
+  background: linear-gradient(
+    180deg,
+    rgba(139, 92, 246, 0.22),
+    rgba(139, 92, 246, 0.08)
+  );
+}
+
+@keyframes glg-bubble-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  6% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  28% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Ticks (Read-Status) */
+.glg .glg-ticks {
+  margin-left: 8px;
+  font-size: 12px;
+  opacity: 0.7;
+  text-shadow: 0 0 8px rgba(139, 92, 246, 0.7);
+}
+
+/* typing indicator */
+.glg .glg-typing {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+.glg .glg-typing__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  animation: glg-typing 1.2s infinite ease-in-out;
+}
+.glg .glg-typing__dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.glg .glg-typing__dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes glg-typing {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-3px);
+    opacity: 1;
+  }
+}
+
+/* Accessibility – reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .glg .gamepad,
+  .glg .btn,
+  .glg .stick,
+  .glg .led,
+  .glg .trophy,
+  .glg .shine,
+  .glg .spark,
+  .glg .confetti rect,
+  .glg .glg-bubble,
+  .glg .glg-typing__dot,
+  .glg .glg-card--chrome::before {
+    animation: none !important;
+  }
+}
