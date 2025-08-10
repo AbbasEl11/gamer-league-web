@@ -1,3 +1,29 @@
+/* ====== GL Tokens (non-breaking) ====== */
+:root {
+  --gl-clr-text: #f1f5f9;
+  --gl-clr-primary: #4f46e5;
+  --gl-clr-primary-dark: #3730a3;
+  --gl-clr-accent: #00f2ff;
+
+  --gl-container-w: 1200px;
+  --gl-navbar-h: 64px;
+
+  --gl-sp-4: 1rem;
+  --gl-sp-6: 1.5rem;
+  --gl-sp-8: 2rem;
+
+  --gl-radius-8: 8px;
+  --gl-radius-pill: 999px;
+
+  --gl-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --gl-dur-1: 140ms;
+
+  --gl-z-navbar: 1000;
+  --gl-z-tooltip: 1100;
+  --gl-z-panel: 1;
+  --gl-z-panel-active: 999;
+}
+
 /* ====== Global Styles ====== */
 a {
   text-decoration: none;
@@ -7,9 +33,9 @@ a {
 body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
-  color: #f1f5f9;
+  color: var(--gl-clr-text);
   background: linear-gradient(-45deg, #0f172a, #1a1a2e, #4f46e5, #00f2ff);
-  background-size: 400% 400%;
+  background-size: 400% 1000%;
   animation: gradient 12s ease infinite;
   overflow-x: hidden;
 }
@@ -26,39 +52,123 @@ body {
   }
 }
 
-/* ====== Buttons ====== */
-
+/* --- Buttons --- */
+/* === Buttons: EINHEITLICHE QUELLE === */
 .btn {
-  display: inline-block;
-  padding: 0.6rem 1.2rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.6rem;
+  font: 600 1rem/1.2 "Segoe UI", system-ui, sans-serif;
+  border: 0;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  text-decoration: none;
+  transition: transform 0.25s var(--gl-ease-out),
+    box-shadow 0.25s var(--gl-ease-out), background-color 0.2s;
+  color: #000;
+}
+.btn:focus-visible {
+  outline: 2px solid var(--gl-clr-accent);
+  outline-offset: 2px;
 }
 
+/* Farben / Varianten */
 .btn-primary {
-  background-color: #4f46e5;
-  color: white;
+  background-color: var(--gl-clr-primary);
+  color: #fff;
 }
-
 .btn-primary:hover {
-  background-color: #3730a3;
+  background-color: var(--gl-clr-primary-dark);
 }
 
 .btn-glow {
-  background-color: #4f46e5;
-  color: white;
-  box-shadow: 0 0 10px #4f46e5;
+  background-color: var(--gl-clr-accent);
+  color: #000;
+  box-shadow: 0 0 15px var(--gl-clr-accent);
 }
-
 .btn-glow:hover {
-  background-color: #3730a3;
-  box-shadow: 0 0 20px #00f2ff;
+  background-color: #00c3cc;
+  box-shadow: 0 0 25px var(--gl-clr-accent);
 }
 
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--gl-clr-primary);
+  color: var(--gl-clr-primary);
+}
+.btn-outline:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.25);
+}
+
+/* Größen / Verhalten (keine Farben) */
+.btn--lg {
+  padding: 1rem 1.8rem;
+  font-size: 1.05rem;
+}
+.btn--sm {
+  padding: 0.55rem 1rem;
+  font-size: 0.92rem;
+}
+.btn--block {
+  width: 100%;
+  display: inline-flex;
+}
+
+/* --- Page Layout --- */
 .page-container {
   padding: 2rem;
+}
+
+.gl-container {
+  width: min(var(--gl-container-w), 100% - 2rem);
+  margin-inline: auto;
+}
+
+.gl-page-wrap {
+  padding-top: var(--gl-navbar-h);
+}
+
+/* --- Utilities --- */
+.gl-center {
+  display: grid;
+  place-items: center;
+}
+
+.gl-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gl-sp-4);
+}
+
+.gl-grid {
+  display: grid;
+  gap: var(--gl-sp-6);
+}
+
+.gl-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--gl-radius-8);
+  padding: var(--gl-sp-4);
+}
+
+.my-block {
+  border-radius: var(--gl-radius-8);
+  padding: var(--gl-sp-4);
+}
+
+/* --- Accessibility --- */
+@media (prefers-reduced-motion: reduce) {
+  body {
+    animation: none !important;
+  }
+
+  .btn-outline:hover {
+    transform: none;
+    box-shadow: none;
+  }
 }

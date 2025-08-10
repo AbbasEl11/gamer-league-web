@@ -12,7 +12,7 @@ function Login() {
         <label>Password</label>
         <input type="password" required />
 
-        <button type="submit" className="btn btn-primary">Log In</button>
+        <button type="submit" className="btn btn-primary btn--block">Log In</button>
 
         <div className="form-footer">
           Don’t have an account? <a href="/register">Register</a>

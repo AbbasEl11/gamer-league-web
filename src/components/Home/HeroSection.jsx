@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import '../../styles/components/Home/hero-section.css';
-import logo from '../../assets/logos/GL-logo.png'; // falls du ein Logo willst
+import logo from '../../assets/logos/GL-logo.png'; 
 
 function HeroSection() {
   return (

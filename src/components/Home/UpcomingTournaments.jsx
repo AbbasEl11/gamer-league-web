@@ -1,5 +1,5 @@
 import '../../styles/components/Home/upcoming-tournaments.css';
-import TournamentCard from '../TournamentCard';
+import TournamentCard from '../Tournament/TournamentCard';
 
 function UpcomingTournaments() {
   const tournaments = [

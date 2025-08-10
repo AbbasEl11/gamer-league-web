@@ -40,36 +40,3 @@
   gap: 1rem;
   flex-wrap: wrap;
 }
-
-.btn {
-  padding: 0.8rem 1.6rem;
-  font-weight: 600;
-  font-size: 1rem;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  color: #000;
-}
-
-.btn-glow {
-  background-color: #00f2ff;
-  box-shadow: 0 0 15px #00f2ff;
-  color: #000;
-}
-
-.btn-glow:hover {
-  background-color: #00c3cc;
-  box-shadow: 0 0 25px #00f2ff;
-  color: #000;
-}
-
-.btn-primary {
-  background-color: #4f46e5;
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: #3730a3;
-}

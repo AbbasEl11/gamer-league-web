@@ -3,10 +3,10 @@ import { createContext, useContext, useState } from 'react';
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null); // später ersetzt durch echten User
+  const [user, setUser] = useState(null); // Later this will be replaced with user data from backend
 
   const login = (email) => {
-    // später per Backend prüfen
+    // Backend-Login-Logic here
     setUser({ email });
   };
 
