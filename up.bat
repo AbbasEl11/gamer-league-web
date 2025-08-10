@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-REM Frage Commit-Message ab (wenn kein Parameter)
+REM 
 if "%~1"=="" (
   set /p msg="Commit message: "
 ) else (
